@@ -26,7 +26,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
     breedlistapi breedlistapis;
-    ProgressDialog progressBar;
     Retrofit retrofits;
     List<String> messages;
     com.ashraf.dogapi.adapter.dogadapter dogadapters;
