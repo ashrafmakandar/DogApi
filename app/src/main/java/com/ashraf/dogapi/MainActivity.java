@@ -54,15 +54,10 @@ public class MainActivity extends AppCompatActivity implements ConnectivityRecie
         setContentView(R.layout.activity_main);
         recyclerView = findViewById(R.id.recView);
         checkconnection();
-        Gson gson= new GsonBuilder().setLenient().create();
-        retrofits = new Retrofit.Builder().baseUrl("https://dog.ceo/api/")
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-
-                .addConverterFactory(GsonConverterFactory.create()).build();
         messages = new ArrayList<>();
         Myapplication myapplication= (Myapplication) getApplication();
 
-        breedsapiservice  breedsapiservices=myapplication.getBreedsapiservice(gson,retrofits);
+        breedsapiservice  breedsapiservices=myapplication.getBreedsapiservice();
         breedsapiservices.gethounds().subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<hound>() {

@@ -2,7 +2,9 @@ package com.ashraf.dogapi;
 
 import android.app.Application;
 
+import com.ashraf.dogapi.di.Daggerappcompenent;
 import com.ashraf.dogapi.di.appcompenent;
+import com.ashraf.dogapi.di.appmodule;
 import com.ashraf.dogapi.remote.breedsapiservice;
 import com.google.gson.Gson;
 
@@ -17,7 +19,7 @@ appcompenent appcompenents;
     public void onCreate() {
         super.onCreate();
         mInstance=this;
-
+appcompenents= Daggerappcompenent.builder().appmodule(new appmodule()).build();
 
     }
     public static synchronized Myapplication getInstance()
@@ -30,8 +32,9 @@ appcompenent appcompenents;
     }
 
 
-    public com.ashraf.dogapi.remote.breedsapiservice getBreedsapiservice(Gson gson, Retrofit retrofit) {
-        breedsapiservice= new breedsapiservice(gson,retrofit);
-        return breedsapiservice;
+    public com.ashraf.dogapi.remote.breedsapiservice getBreedsapiservice() {
+       // breedsapiservice= new breedsapiservice(gson,retrofit);
+        return  appcompenents.getbreeds();
+        //return breedsapiservice;
     }
 }
