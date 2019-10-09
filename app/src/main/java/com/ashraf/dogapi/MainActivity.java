@@ -47,12 +47,14 @@ public class MainActivity extends AppCompatActivity implements ConnectivityRecie
     List<String> messages;
     com.ashraf.dogapi.adapter.dogadapter dogadapters;
     RecyclerView recyclerView;
-
+LinearLayout linearLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         recyclerView = findViewById(R.id.recView);
+        linearLayout= findViewById(R.id.layout);
+        linearLayout.setVisibility(View.INVISIBLE);
         checkconnection();
         messages = new ArrayList<>();
         Myapplication myapplication= (Myapplication) getApplication();
@@ -109,9 +111,14 @@ public class MainActivity extends AppCompatActivity implements ConnectivityRecie
         if (isConnected) {
             message = "internet connection is on";
 
+            recyclerView.setVisibility(View.VISIBLE);
+            linearLayout.setVisibility(View.INVISIBLE);
+
 
         } else {
             message = "internet is off";
+            recyclerView.setVisibility(View.INVISIBLE);
+            linearLayout.setVisibility(View.VISIBLE);
 
         }
         Toast.makeText(this, "" + message, Toast.LENGTH_SHORT).show();
